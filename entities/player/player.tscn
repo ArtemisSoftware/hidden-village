@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b666q4h83mjo6"]
+
+[ext_resource type="Texture2D" uid="uid://bwetnkrww8jgf" path="res://entities/player/sprites/SpriteSheet.png" id="1_symyc"]
+
+[node name="Player" type="CharacterBody2D" unique_id=646627688]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=527418154]
+texture = ExtResource("1_symyc")
+hframes = 4
+vframes = 7
