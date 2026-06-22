@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dp532fwlvnhsu"]
+
+[ext_resource type="Script" uid="uid://c8ey7nugesvuc" path="res://world/camera/follow_camera.gd" id="1_l0tlr"]
+
+[node name="FollowCamera" type="Camera2D" unique_id=2042255989]
+limit_left = 0
+limit_top = 0
+limit_right = 480
+limit_bottom = 288
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("1_l0tlr")
