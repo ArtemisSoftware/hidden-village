@@ -870,6 +870,8 @@ texture = ExtResource("1_4717r")
 19:25/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_fn3g3"]
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "sand"
 terrain_set_0/terrain_0/color = Color(0.7045015, 0.0828884, 0.26239163, 1)
@@ -1273,7 +1275,8 @@ texture = ExtResource("3_h5o24")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.8961945, -4.3106613, 5.8961945, -4.4097576, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_ai45w"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_sc4t8")
 sources/3 = SubResource("TileSetAtlasSource_fn3g3")
 

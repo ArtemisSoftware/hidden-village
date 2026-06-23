@@ -29,3 +29,10 @@ func _update_animation()-> void:
 	
 	animation_player.play("walk" + "_" + direction)
 	pass	
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	
+	if area.name == "HitBox":
+		print_debug(area.get_parent().name)
+	pass # Replace with function body.

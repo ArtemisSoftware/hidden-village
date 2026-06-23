@@ -3,8 +3,7 @@ class_name Slime extends CharacterBody2D
 @export var speed = 30
 @export var movement_limit = 0.5
 @export var end_point_marker: Marker2D
-
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 var start_position
@@ -20,6 +19,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_update_velocity()
 	move_and_slide()
+	_handle_collision()
 	_update_animation()
 	pass
 
@@ -41,11 +41,25 @@ func _change_direction()	-> void:
 	pass	
 	
 func _update_animation():
-	var animation = "walk_up"
+	if velocity.length() == 0:
+		animation_player.stop()
+		return
 	
-	if velocity.y > 0:
-		animation = "walk_down"	
-		
-	animated_sprite_2d.play(animation)
+	var direction = "down"
+	
+	if velocity.x < 0: direction = "left"
+	elif velocity.x > 0: direction = "right"
+	elif velocity.y < 0: direction = "up"
+	
+	animation_player.play("walk" + "_" + direction)
 	pass
 	
+	
+func _handle_collision() -> void:
+	
+	for index in get_slide_collision_count():
+		var collision = get_slide_collision(index)
+		var collider = collision.get_collider()
+		
+	
+	pass	
