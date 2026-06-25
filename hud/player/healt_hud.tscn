@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bgar77kc6vxbd"]
+
+[ext_resource type="PackedScene" uid="uid://bslevyetreva" path="res://hud/components/heart.tscn" id="1_12drn"]
+
+[node name="HeartContainer" type="HBoxContainer" unique_id=1604997671]
+offset_right = 52.0
+offset_bottom = 40.0
+theme_override_constants/separation = 2
+
+[node name="Heart" parent="." unique_id=2103750671 instance=ExtResource("1_12drn")]
+layout_mode = 2
+
+[node name="Heart2" parent="." unique_id=1088373501 instance=ExtResource("1_12drn")]
+layout_mode = 2
+
+[node name="Heart3" parent="." unique_id=762184246 instance=ExtResource("1_12drn")]
+layout_mode = 2

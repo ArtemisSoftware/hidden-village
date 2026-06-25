@@ -4,6 +4,9 @@ class_name Player extends CharacterBody2D
 
 @export var speed: int = 35
 
+@export var max_health: int = 3
+@onready var current_health: int = max_health
+
 func _physics_process(delta: float) -> void:
 	
 	_handle_input()
@@ -34,5 +37,9 @@ func _update_animation()-> void:
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	
 	if area.name == "HitBox":
-		print_debug(area.get_parent().name)
+		current_health -= 1
+		
+		if current_health <= 0:
+			current_health = max_health
+		
 	pass # Replace with function body.

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dweq3biojwm1i"]
+
+[ext_resource type="PackedScene" uid="uid://bgar77kc6vxbd" path="res://hud/player/healt_hud.tscn" id="1_6ca3a"]
+
+[node name="Hud" type="CanvasLayer" unique_id=1191468058]
+
+[node name="HeartContainer" parent="." unique_id=1604997671 instance=ExtResource("1_6ca3a")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -52.0
+offset_right = 0.0
+grow_horizontal = 0

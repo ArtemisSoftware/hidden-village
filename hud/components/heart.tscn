@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bslevyetreva"]
+
+[ext_resource type="Texture2D" uid="uid://ggmglnbaxca1" path="res://hud/player/sprites/Heart.png" id="1_x0k4j"]
+
+[node name="Heart" type="Panel" unique_id=2103750671]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 13)
+offset_right = 16.0
+offset_bottom = 13.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=557533137]
+position = Vector2(0, -2)
+texture = ExtResource("1_x0k4j")
+centered = false
+hframes = 5
+frame = 4

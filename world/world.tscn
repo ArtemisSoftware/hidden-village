@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dj1iiowx1i7b6" path="res://world/titlesets/animated/plant.png" id="3_h5o24"]
 [ext_resource type="PackedScene" uid="uid://dp532fwlvnhsu" path="res://world/camera/follow_camera.tscn" id="5_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://e077pwepcfp7" path="res://entities/enemies/slime/slime.tscn" id="6_fn3g3"]
+[ext_resource type="PackedScene" uid="uid://dweq3biojwm1i" path="res://hud/hud.tscn" id="7_sc4t8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mmdvd"]
 texture = ExtResource("1_4717r")
@@ -1313,3 +1314,5 @@ end_point_marker = NodePath("Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="Enemies/Slime2" unique_id=1229009068]
 position = Vector2(57, -3)
+
+[node name="Hud" parent="." unique_id=1191468058 instance=ExtResource("7_sc4t8")]
