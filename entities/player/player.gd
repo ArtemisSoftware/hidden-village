@@ -7,6 +7,9 @@ class_name Player extends CharacterBody2D
 @export var max_health: int = 3
 @onready var current_health: int = max_health
 
+signal health_changed
+
+
 func _physics_process(delta: float) -> void:
 	
 	_handle_input()
@@ -42,4 +45,5 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		if current_health <= 0:
 			current_health = max_health
 		
+		health_changed.emit(current_health)
 	pass # Replace with function body.
