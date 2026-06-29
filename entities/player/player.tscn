@@ -105,13 +105,60 @@ size = Vector2(12, 4)
 [sub_resource type="CircleShape2D" id="CircleShape2D_abrql"]
 radius = 8.0
 
+[sub_resource type="Animation" id="Animation_qiwj3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_26q78"]
+resource_name = "hurt_blink"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.7647059, 0.011764706, 0, 0.5529412), Color(1, 0.98039216, 0.98039216, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bectd"]
+_data = {
+&"RESET": SubResource("Animation_qiwj3"),
+&"hurt_blink": SubResource("Animation_26q78")
+}
+
 [node name="Player" type="CharacterBody2D" unique_id=646627688]
 script = ExtResource("1_abrql")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=527418154]
+clip_children = 2
 texture = ExtResource("1_symyc")
 hframes = 4
 vframes = 7
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D" unique_id=76089905]
+offset_left = -19.0
+offset_top = -18.0
+offset_right = 21.0
+offset_bottom = 22.0
+color = Color(1, 1, 1, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1567857408]
 libraries/ = SubResource("AnimationLibrary_qiwj3")
@@ -126,5 +173,11 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=833177182]
 shape = SubResource("CircleShape2D_abrql")
 debug_color = Color(0.89399916, 0.23288524, 0.56124073, 0.41960785)
+
+[node name="EffectsAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1097497420]
+libraries/ = SubResource("AnimationLibrary_bectd")
+
+[node name="HurtBlinkTimer" type="Timer" parent="." unique_id=1421177193]
+one_shot = true
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

@@ -1,6 +1,8 @@
 class_name Player extends CharacterBody2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var effects_animation_player: AnimationPlayer = $EffectsAnimationPlayer
+@onready var hurt_blink_timer: Timer = $HurtBlinkTimer
 
 @export var speed: int = 35
 
@@ -11,6 +13,10 @@ class_name Player extends CharacterBody2D
 
 signal health_changed
 
+
+func _ready() -> void:
+	effects_animation_player.play("RESET")
+	pass
 
 func _physics_process(delta: float) -> void:
 	
@@ -56,4 +62,9 @@ func _knock_back(enemy_velocity: Vector2) -> void:
 	var knock_back_direction = (enemy_velocity -velocity).normalized() * knock_back_power
 	velocity = knock_back_direction
 	move_and_slide()
+	
+	effects_animation_player.play("hurt_blink")
+	hurt_blink_timer.start()
+	await hurt_blink_timer.timeout
+	effects_animation_player.play("RESET")
 	pass
