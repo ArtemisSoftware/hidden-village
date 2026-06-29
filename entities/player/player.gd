@@ -7,6 +7,8 @@ class_name Player extends CharacterBody2D
 @export var max_health: int = 3
 @onready var current_health: int = max_health
 
+@export var knock_back_power: int = 500
+
 signal health_changed
 
 
@@ -46,4 +48,12 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 			current_health = max_health
 		
 		health_changed.emit(current_health)
+		_knock_back(area.get_parent().velocity)
 	pass # Replace with function body.
+
+func _knock_back(enemy_velocity: Vector2) -> void:
+	
+	var knock_back_direction = (enemy_velocity -velocity).normalized() * knock_back_power
+	velocity = knock_back_direction
+	move_and_slide()
+	pass
