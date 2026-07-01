@@ -3,6 +3,7 @@ class_name Player extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var effects_animation_player: AnimationPlayer = $EffectsAnimationPlayer
 @onready var hurt_blink_timer: Timer = $HurtBlinkTimer
+@onready var hurt_box: Area2D = $HurtBox
 
 @export var speed: int = 35
 
@@ -15,7 +16,6 @@ signal health_changed
 
 
 var is_hurt: bool = false
-var enemy_collisions = []
 
 func _ready() -> void:
 	effects_animation_player.play("RESET")
@@ -28,8 +28,9 @@ func _physics_process(delta: float) -> void:
 	_update_animation()
 	
 	if not is_hurt:
-		for enemy_area in enemy_collisions:
-			_hurt_by_enemy(enemy_area)
+		for area in hurt_box.get_overlapping_areas():
+			if area.name == "HitBox":
+				_hurt_by_enemy(area)
 	
 	pass
 
@@ -63,12 +64,6 @@ func _hurt_by_enemy(area: Area2D) -> void:
 	_knock_back(area.get_parent().velocity)
 	pass
 
-func _on_hurt_box_area_entered(area: Area2D) -> void:
-
-	if area.name == "HitBox":
-		enemy_collisions.append(area)
-		
-	pass # Replace with function body.
 
 func _knock_back(enemy_velocity: Vector2) -> void:
 	
@@ -83,7 +78,13 @@ func _knock_back(enemy_velocity: Vector2) -> void:
 	is_hurt = false
 	pass
 
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	
+	if area.has_method("collect"):
+		area.collect()
+	
+	pass # Replace with function body.
+
 
 func _on_hurt_box_area_exited(area: Area2D) -> void:
-	enemy_collisions.erase(area)
 	pass # Replace with function body.

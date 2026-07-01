@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bbhnfjouqnbyx"]
+
+[ext_resource type="PackedScene" uid="uid://bc0ua7hvb8nnm" path="res://entities/items/collectable.tscn" id="1_w1x3u"]
+[ext_resource type="Texture2D" uid="uid://bb014jbrvqwyh" path="res://entities/items/sprites/Sword.png" id="2_6v7bt"]
+[ext_resource type="Script" uid="uid://duwjtochy15r7" path="res://entities/items/sword/sword.gd" id="2_il6v0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_il6v0"]
+resource_local_to_scene = true
+size = Vector2(6, 16)
+
+[sub_resource type="Animation" id="Animation_s1a02"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hxb6w"]
+resource_name = "spin"
+length = 0.4
+step = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10142597, 0.20039526, 0.30006644, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5707964, 3.1415927, 4.712389, 6.2831855]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vunjw"]
+_data = {
+&"RESET": SubResource("Animation_s1a02"),
+&"spin": SubResource("Animation_hxb6w")
+}
+
+[node name="Sword" unique_id=564647687 instance=ExtResource("1_w1x3u")]
+script = ExtResource("2_il6v0")
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=609932720]
+shape = SubResource("RectangleShape2D_il6v0")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1996795907]
+texture = ExtResource("2_6v7bt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1738418309]
+libraries/ = SubResource("AnimationLibrary_vunjw")

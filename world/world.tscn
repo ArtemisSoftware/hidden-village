@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bjce0eljxs2y" path="res://world/titlesets/sprites/TilesetFloor.png" id="1_4717r"]
 [ext_resource type="Texture2D" uid="uid://b6mncff7gafno" path="res://world/titlesets/sprites/TilesetNature.png" id="2_h5o24"]
 [ext_resource type="Texture2D" uid="uid://dj1iiowx1i7b6" path="res://world/titlesets/animated/plant.png" id="3_h5o24"]
+[ext_resource type="PackedScene" uid="uid://dw6mdcjo8i30x" path="res://entities/items/lifepot/life_pot.tscn" id="4_ai45w"]
+[ext_resource type="PackedScene" uid="uid://bbhnfjouqnbyx" path="res://entities/items/sword/sword.tscn" id="5_4papg"]
 [ext_resource type="PackedScene" uid="uid://dp532fwlvnhsu" path="res://world/camera/follow_camera.tscn" id="5_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://e077pwepcfp7" path="res://entities/enemies/slime/slime.tscn" id="6_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://dweq3biojwm1i" path="res://hud/hud.tscn" id="7_sc4t8"]
@@ -1281,6 +1283,14 @@ physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_sc4t8")
 sources/3 = SubResource("TileSetAtlasSource_fn3g3")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_4papg"]
+resource_name = "Collectibles"
+scenes/1/scene = ExtResource("4_ai45w")
+scenes/2/scene = ExtResource("5_4papg")
+
+[sub_resource type="TileSet" id="TileSet_fyhu2"]
+sources/0 = SubResource("TileSetScenesCollectionSource_4papg")
+
 [node name="World" type="Node2D" unique_id=1580332255]
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=1585598891]
@@ -1292,6 +1302,10 @@ tile_set = SubResource("TileSet_fn3g3")
 [node name="Foliage" type="TileMapLayer" parent="TileMapLayers" unique_id=1348429114]
 tile_map_data = PackedByteArray("AAAJAAQAAAAAAAsAAAAMAAUAAAAAAAsAAAAMAAYAAAACAAsAAAAKAAEAAAAEAAsAAAAMAAIAAAAFAAsAAAAGAAAAAAAAAAsAAAADAAQAAAAEAAsAAAAFAAQAAAAEAAsAAAAGAAQAAAABAAsAAAAHAAQAAAABAAsAAAABAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAAGAAIAAwAAAAAAAAAFAAcAAwAAAAAAAAAIAAYAAwAAAAAAAAAIAAcAAwAAAAAAAAAAAP//AAAIAAwAAAABAP//AAAIAAwAAAACAP//AAAIAAwAAAADAP//AAAIAAwAAAAEAP//AAAIAAwAAAAFAP//AAAIAAwAAAAGAP//AAAIAAwAAAAHAP//AAAIAAwAAAAIAP//AAAIAAwAAAAJAP//AAAIAAwAAAAKAP//AAAIAAwAAAALAP//AAAIAAwAAAAMAP//AAAIAAwAAAANAP//AAAIAAwAAAAOAP//AAAIAAwAAAAPAP//AAAIAAwAAAAQAP//AAAIAAwAAAARAP//AAAIAAwAAAASAP//AAAIAAwAAAATAP//AAAIAAwAAAAUAP//AAAIAAwAAAAVAP//AAAIAAwAAAAVAAAAAAAIAAwAAAAVAAEAAAAIAAwAAAAVAAIAAAAIAAwAAAAVAAMAAAAIAAwAAAAVAAQAAAAIAAwAAAAVAAgAAAAIAAwAAAAVAAkAAAAIAAwAAAAVAAoAAAAIAAwAAAAVAAsAAAAIAAwAAAAVAAwAAAAIAAwAAAD/////AAAIAAwAAAD//wAAAAAIAAwAAAD//wEAAAAIAAwAAAD//wIAAAAIAAwAAAD//wMAAAAIAAwAAAD//wQAAAAIAAwAAAD//wUAAAAIAAwAAAD//wYAAAAIAAwAAAD//wcAAAAIAAwAAAD//wgAAAAIAAwAAAD//wkAAAAIAAwAAAD//woAAAAIAAwAAAD//wsAAAAIAAwAAAD//wwAAAAIAAwAAAD//w0AAAAIAAwAAAAAAA0AAAAIAAwAAAABAA0AAAAIAAwAAAACAA0AAAAIAAwAAAADAA0AAAAIAAwAAAAEAA0AAAAIAAwAAAAFAA0AAAAIAAwAAAAGAA0AAAAIAAwAAAAHAA0AAAAIAAwAAAAIAA0AAAAIAAwAAAAJAA0AAAAIAAwAAAAKAA0AAAAIAAwAAAALAA0AAAAIAAwAAAASAAkAAAAAAAwAAAAMAA0AAAAIAAwAAAANAA0AAAAIAAwAAAAOAA0AAAAIAAwAAAAPAA0AAAAIAAwAAAAQAA0AAAAIAAwAAAARAA0AAAAIAAwAAAASAA0AAAAIAAwAAAATAA0AAAAIAAwAAAAUAA0AAAAIAAwAAAAVAA0AAAAIAAwAAAD//w8AAAABAAsAAAABAA8AAAAAAAsAAAACAA4AAAABAAsAAAAEAA8AAAABAAsAAAAFAA8AAAACAAsAAAAHAA4AAAAAAAsAAAAJAA8AAAAAAAsAAAAKAA8AAAABAAsAAAALAA4AAAABAAsAAAALAA8AAAADAAsAAAANAA4AAAADAAsAAAAPAA4AAAACAAsAAAAQAA4AAAABAAsAAAARAA8AAAADAAsAAAAVAA8AAAABAAsAAAAVAAcAAAAIAAwAAAAVAAYAAAAIAAwAAAAVAAUAAAAIAAwAAAA=")
 tile_set = SubResource("TileSet_ai45w")
+
+[node name="Collectibles" type="TileMapLayer" parent="TileMapLayers" unique_id=2131688815]
+tile_map_data = PackedByteArray("AAAKAAMAAAAAAAAAAQAAAAQAAAAAAAAAAQAAAAEAAAAAAAAAAQAAAAMAAAAAAAAAAgA=")
+tile_set = SubResource("TileSet_fyhu2")
 
 [node name="Player" parent="." unique_id=646627688 instance=ExtResource("1_6xmxd")]
 position = Vector2(45, 40)
