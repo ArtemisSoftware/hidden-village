@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://wyo1jlcb2tj7" path="res://hud/hud.gd" id="1_2gk58"]
 [ext_resource type="PackedScene" uid="uid://bgar77kc6vxbd" path="res://hud/player/healt_hud.tscn" id="1_6ca3a"]
+[ext_resource type="PackedScene" uid="uid://dt584atse50hs" path="res://hud/inventory/inventory_hud.tscn" id="3_318vg"]
 
 [node name="Hud" type="CanvasLayer" unique_id=1191468058]
+process_mode = 3
 script = ExtResource("1_2gk58")
 
 [node name="HeartContainer" parent="." unique_id=1604997671 instance=ExtResource("1_6ca3a")]
@@ -11,3 +13,17 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 grow_horizontal = 0
+
+[node name="InventoryHud" parent="." unique_id=27256323 instance=ExtResource("3_318vg")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -40.0
+offset_right = 64.0
+offset_bottom = 40.0
+
+[connection signal="inventory_closed" from="InventoryHud" to="." method="_on_inventory_hud_inventory_closed"]
+[connection signal="inventory_opened" from="InventoryHud" to="." method="_on_inventory_hud_inventory_opened"]
