@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Inventory" format=3 uid="uid://cqqrranur12so"]
+
+[ext_resource type="Script" uid="uid://cgsbgltnnnvb7" path="res://hud/inventory/resources/inventory_item.gd" id="1_qhnwx"]
+[ext_resource type="Script" uid="uid://ddsbopvcs8fe2" path="res://hud/inventory/resources/inventory.gd" id="2_6emem"]
+[ext_resource type="Resource" uid="uid://bsialuck1oain" path="res://entities/items/sword/sword.tres" id="2_hfm03"]
+[ext_resource type="Resource" uid="uid://blu4xlr8co138" path="res://entities/items/lifepot/lifepot.tres" id="3_25oho"]
+
+[resource]
+script = ExtResource("2_6emem")
+items = Array[ExtResource("1_qhnwx")]([ExtResource("2_hfm03"), ExtResource("3_25oho"), ExtResource("3_25oho"), null, ExtResource("3_25oho")])
+metadata/_custom_type_script = "uid://ddsbopvcs8fe2"

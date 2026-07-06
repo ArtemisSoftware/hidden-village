@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://blu4xlr8co138"]
+
+[ext_resource type="Script" uid="uid://cgsbgltnnnvb7" path="res://hud/inventory/resources/inventory_item.gd" id="1_r7k1o"]
+[ext_resource type="Texture2D" uid="uid://d3ohl33aal4fb" path="res://entities/items/sprites/LifePot.png" id="1_xlwhs"]
+
+[resource]
+script = ExtResource("1_r7k1o")
+name = "Life Pot"
+icon = ExtResource("1_xlwhs")
+metadata/_custom_type_script = "uid://cgsbgltnnnvb7"

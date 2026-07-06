@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bkpfofv1d3ic5"]
 
+[ext_resource type="Script" uid="uid://cwbc2vfeyyye2" path="res://hud/inventory/inventory_slot.gd" id="1_glbi7"]
 [ext_resource type="Texture2D" uid="uid://n808ynn5fac3" path="res://hud/inventory/sprites/inventorySlot.png" id="1_kjpnh"]
 
 [node name="InventorySlot" type="Panel" unique_id=1921423722]
@@ -7,8 +8,20 @@ self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(20, 20)
 offset_right = 20.0
 offset_bottom = 20.0
+script = ExtResource("1_glbi7")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1120365358]
+[node name="Background" type="Sprite2D" parent="." unique_id=1120365358]
 texture = ExtResource("1_kjpnh")
 centered = false
 vframes = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1324236068]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="Panel" type="Panel" parent="CenterContainer" unique_id=1101964371]
+layout_mode = 2
+
+[node name="Item" type="Sprite2D" parent="CenterContainer/Panel" unique_id=345926763]

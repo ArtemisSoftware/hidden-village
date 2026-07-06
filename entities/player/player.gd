@@ -11,6 +11,7 @@ class_name Player extends CharacterBody2D
 @onready var current_health: int = max_health
 
 @export var knock_back_power: int = 500
+@export var inventory: Inventory
 
 signal health_changed
 
