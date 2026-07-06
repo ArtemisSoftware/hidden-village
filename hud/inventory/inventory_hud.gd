@@ -11,6 +11,7 @@ var slots: Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	PLAYER_INVENTORY.inventory_updated.connect(update)
 	slots = grid_container.get_children()
 	toggle()
 	update()
@@ -31,6 +32,6 @@ func toggle() -> void:
 	pass
 
 func update() -> void:
-	for index in range(min(PLAYER_INVENTORY.items.size(), slots.size())):
-		slots[index].update(PLAYER_INVENTORY.items[index])
+	for index in range(min(PLAYER_INVENTORY.inventory.size(), slots.size())):
+		slots[index].update(PLAYER_INVENTORY.inventory[index])
 	pass

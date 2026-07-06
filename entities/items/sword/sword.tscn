@@ -3,8 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bc0ua7hvb8nnm" path="res://entities/items/collectable.tscn" id="1_w1x3u"]
 [ext_resource type="Texture2D" uid="uid://bb014jbrvqwyh" path="res://entities/items/sprites/Sword.png" id="2_6v7bt"]
 [ext_resource type="Script" uid="uid://duwjtochy15r7" path="res://entities/items/sword/sword.gd" id="2_il6v0"]
+[ext_resource type="Resource" uid="uid://bsialuck1oain" path="res://entities/items/sword/sword.tres" id="3_il6v0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_il6v0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1a02"]
 resource_local_to_scene = true
 size = Vector2(6, 16)
 
@@ -48,9 +49,10 @@ _data = {
 
 [node name="Sword" unique_id=564647687 instance=ExtResource("1_w1x3u")]
 script = ExtResource("2_il6v0")
+inventory_item = ExtResource("3_il6v0")
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=609932720]
-shape = SubResource("RectangleShape2D_il6v0")
+shape = SubResource("RectangleShape2D_s1a02")
 
 [node name="Sprite2D" parent="." index="1" unique_id=1996795907]
 texture = ExtResource("2_6v7bt")

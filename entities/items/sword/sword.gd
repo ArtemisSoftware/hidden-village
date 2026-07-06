@@ -1,4 +1,4 @@
-extends Collectable
+class_name Sword extends Collectable
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -12,8 +12,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func collect():
+func collect(inventory: Inventory):
 	animation_player.play("spin")
 	await  animation_player.animation_finished
-	super.collect()
+	super.collect(inventory)
 	pass
