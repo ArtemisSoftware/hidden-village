@@ -7,4 +7,5 @@
 script = ExtResource("1_dsm36")
 name = "Sword"
 icon = ExtResource("1_4g80f")
+max_amount = 3
 metadata/_custom_type_script = "uid://cgsbgltnnnvb7"

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cwbc2vfeyyye2" path="res://hud/inventory/inventory_slot.gd" id="1_glbi7"]
 [ext_resource type="Texture2D" uid="uid://n808ynn5fac3" path="res://hud/inventory/sprites/inventorySlot.png" id="1_kjpnh"]
+[ext_resource type="FontFile" uid="uid://fk6wvok2f1fh" path="res://font/NormalFont.ttf" id="3_vygjm"]
 
 [node name="InventorySlot" type="Panel" unique_id=1921423722]
 self_modulate = Color(1, 1, 1, 0)
@@ -25,3 +26,16 @@ offset_bottom = 20.0
 layout_mode = 2
 
 [node name="Item" type="Sprite2D" parent="CenterContainer/Panel" unique_id=345926763]
+
+[node name="Amount" type="Label" parent="CenterContainer/Panel" unique_id=899736890]
+custom_minimum_size = Vector2(11, 14)
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 9.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vygjm")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 2
