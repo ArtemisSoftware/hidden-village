@@ -1,6 +1,7 @@
 class_name Sword extends Collectable
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 
 # Called when the node enters the scene tree for the first time.

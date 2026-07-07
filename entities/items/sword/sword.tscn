@@ -47,15 +47,25 @@ _data = {
 &"spin": SubResource("Animation_hxb6w")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_il6v0"]
+size = Vector2(4, 9.5)
+
 [node name="Sword" unique_id=564647687 instance=ExtResource("1_w1x3u")]
 script = ExtResource("2_il6v0")
 inventory_item = ExtResource("3_il6v0")
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=609932720]
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_s1a02")
 
 [node name="Sprite2D" parent="." index="1" unique_id=1996795907]
+position = Vector2(0, -6)
 texture = ExtResource("2_6v7bt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1738418309]
 libraries/ = SubResource("AnimationLibrary_vunjw")
+
+[node name="Hit" type="CollisionShape2D" parent="." index="3" unique_id=141582679]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_il6v0")
+debug_color = Color(0.94913, 0.13248351, 0.46673846, 0.41960785)

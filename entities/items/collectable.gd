@@ -2,6 +2,7 @@ class_name Collectable extends Area2D
 
 
 @export var inventory_item: InventoryItem
+@export var collected: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

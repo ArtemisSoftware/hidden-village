@@ -4,6 +4,7 @@ class_name Player extends CharacterBody2D
 @onready var effects_animation_player: AnimationPlayer = $EffectsAnimationPlayer
 @onready var hurt_blink_timer: Timer = $HurtBlinkTimer
 @onready var hurt_box: Area2D = $HurtBox
+@onready var weapon: Node2D = $Weapon
 
 @export var speed: int = 35
 
@@ -15,8 +16,9 @@ class_name Player extends CharacterBody2D
 
 signal health_changed
 
-
+var last_animated_direction: String = "down"
 var is_hurt: bool = false
+var is_attacking: bool = false
 
 func _ready() -> void:
 	effects_animation_player.play("RESET")
@@ -38,11 +40,19 @@ func _physics_process(delta: float) -> void:
 func _handle_input()-> void:
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = direction * speed
+	
+	if Input.is_action_just_pressed("attack"):
+		_attack()
+
 	pass
 	
 func _update_animation()-> void:
+	
+	if is_attacking: return
+	
 	if velocity.length() == 0:
 		animation_player.stop()
+		animation_player.play("walk" + "_" + last_animated_direction)
 		return
 	
 	var direction = "down"
@@ -52,6 +62,7 @@ func _update_animation()-> void:
 	elif velocity.y < 0: direction = "up"
 	
 	animation_player.play("walk" + "_" + direction)
+	last_animated_direction = direction
 	pass	
 
 func _hurt_by_enemy(area: Area2D) -> void:
@@ -78,11 +89,21 @@ func _knock_back(enemy_velocity: Vector2) -> void:
 	effects_animation_player.play("RESET")
 	is_hurt = false
 	pass
+	
+func _attack() -> void:
+	animation_player.play("attack_" + last_animated_direction)
+	is_attacking = true
+	weapon.visible = true
+	await  animation_player.animation_finished
+	weapon.visible = false
+	is_attacking = false	
+	pass	
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	
 	if area.has_method("collect"):
-		area.collect(inventory)
+		if area.collected == false:
+			area.collect(inventory)
 	
 	pass # Replace with function body.
 
