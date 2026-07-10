@@ -18,3 +18,7 @@ func collect(inventory: Inventory):
 	await  animation_player.animation_finished
 	super.collect(inventory)
 	pass
+
+func toggleEnabled(is_disabled: bool = true) -> void:
+	collision_shape_2d.disabled = is_disabled
+	pass

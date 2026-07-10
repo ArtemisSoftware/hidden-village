@@ -93,9 +93,9 @@ func _knock_back(enemy_velocity: Vector2) -> void:
 func _attack() -> void:
 	animation_player.play("attack_" + last_animated_direction)
 	is_attacking = true
-	weapon.visible = true
+	weapon.draw_weapon()
 	await  animation_player.animation_finished
-	weapon.visible = false
+	weapon.draw_weapon(false)
 	is_attacking = false	
 	pass	
 

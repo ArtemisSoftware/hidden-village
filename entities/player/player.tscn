@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bwetnkrww8jgf" path="res://entities/player/sprites/SpriteSheet.png" id="1_symyc"]
 [ext_resource type="Resource" uid="uid://cqqrranur12so" path="res://hud/inventory/player_inventory.tres" id="2_sglur"]
 [ext_resource type="PackedScene" uid="uid://bbhnfjouqnbyx" path="res://entities/items/sword/sword.tscn" id="4_bls4j"]
+[ext_resource type="Script" uid="uid://tljfpi00sg3l" path="res://entities/player/weapon.gd" id="4_fkugw"]
 
 [sub_resource type="Animation" id="Animation_abrql"]
 length = 0.001
@@ -393,6 +394,7 @@ one_shot = true
 visible = false
 position = Vector2(5, 6)
 rotation = 2.0943952
+script = ExtResource("4_fkugw")
 
 [node name="Sword" parent="Weapon" unique_id=564647687 instance=ExtResource("4_bls4j")]
 collected = true

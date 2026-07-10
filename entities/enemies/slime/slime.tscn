@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cv50r5jpr5s8w" path="res://entities/enemies/slime/slime.gd" id="1_40ead"]
 [ext_resource type="Texture2D" uid="uid://b7yblgt18oq6m" path="res://entities/enemies/slime/sprites/Slime.png" id="1_m8e27"]
+[ext_resource type="Texture2D" uid="uid://drdbyr1e74c6n" path="res://entities/enemies/slime/sprites/SlimeDeath.png" id="3_xh4mf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_40ead"]
 radius = 4.0
@@ -44,6 +45,83 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DeathEffectSprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DeathEffectSprite2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lcogp"]
+resource_name = "death"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathEffectSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeathEffectSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_xh4mf"]
@@ -217,6 +295,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lcogp"]
 _data = {
 &"RESET": SubResource("Animation_40ead"),
+&"death": SubResource("Animation_lcogp"),
 &"walk_down": SubResource("Animation_xh4mf"),
 &"walk_left": SubResource("Animation_mmb43"),
 &"walk_right": SubResource("Animation_vwks7"),
@@ -227,12 +306,17 @@ _data = {
 radius = 5.0
 height = 14.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xh4mf"]
+radius = 4.999633
+height = 17.99868
+
 [node name="Slime" type="CharacterBody2D" unique_id=1096587831]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_40ead")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1166746654]
+visible = false
 position = Vector2(0, -4)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_40ead")
@@ -253,3 +337,21 @@ position = Vector2(0, -4)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_spiil")
 debug_color = Color(0.92282397, 0.19505984, 0.5014277, 0.41960785)
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=994777227]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1926680470]
+position = Vector2(7.4505815e-09, -4.999999)
+rotation = -1.5829185
+shape = SubResource("CapsuleShape2D_xh4mf")
+debug_color = Color(0.47506744, 0.5818888, 0.2717828, 0.41960785)
+
+[node name="DeathEffectSprite2D" type="Sprite2D" parent="." unique_id=1990276104]
+visible = false
+position = Vector2(0, -10)
+texture = ExtResource("3_xh4mf")
+hframes = 6
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

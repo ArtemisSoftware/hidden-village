@@ -51,6 +51,8 @@ _data = {
 size = Vector2(4, 9.5)
 
 [node name="Sword" unique_id=564647687 instance=ExtResource("1_w1x3u")]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("2_il6v0")
 inventory_item = ExtResource("3_il6v0")
 

@@ -4,10 +4,12 @@ class_name Slime extends CharacterBody2D
 @export var movement_limit = 0.5
 @export var end_point_marker: Marker2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var hit_box: Area2D = $HitBox
 
 
 var start_position
 var end_position
+var is_dead: bool = false
 
 func _ready() -> void:
 	start_position = position
@@ -17,6 +19,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_dead: return
 	_update_velocity()
 	move_and_slide()
 	_handle_collision()
@@ -63,3 +66,12 @@ func _handle_collision() -> void:
 		
 	
 	pass	
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	hit_box.set_deferred("monitorable", false)
+	is_dead = true
+	animation_player.play("death")
+	await animation_player.animation_finished
+	queue_free()
+	pass # Replace with function body.
