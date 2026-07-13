@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bbhnfjouqnbyx" path="res://entities/items/sword/sword.tscn" id="5_4papg"]
 [ext_resource type="PackedScene" uid="uid://dp532fwlvnhsu" path="res://world/camera/follow_camera.tscn" id="5_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://e077pwepcfp7" path="res://entities/enemies/slime/slime.tscn" id="6_fn3g3"]
+[ext_resource type="Texture2D" uid="uid://82jqmg5fpvop" path="res://world/titlesets/sprites/TilesetHouse.png" id="6_fyhu2"]
 [ext_resource type="PackedScene" uid="uid://dweq3biojwm1i" path="res://hud/hud.tscn" id="7_sc4t8"]
+[ext_resource type="PackedScene" uid="uid://cp383dtjg0x8e" path="res://world/transition/scene_trigger.tscn" id="11_ov2xu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mmdvd"]
 texture = ExtResource("1_4717r")
@@ -1291,6 +1293,19 @@ scenes/2/scene = ExtResource("5_4papg")
 [sub_resource type="TileSet" id="TileSet_fyhu2"]
 sources/0 = SubResource("TileSetScenesCollectionSource_4papg")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fyhu2"]
+texture = ExtResource("6_fyhu2")
+0:0/size_in_atlas = Vector2i(4, 3)
+0:0/0 = 0
+0:0/0/y_sort_origin = 22
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.611526, -7.6799145, 31.11605, -7.878107, 30.422386, 18.084969, 26.656746, 23.634327, -0.594574, 23.436134, -1.3873367, 8, -15.458931, 8.175396, -15.161644, 23.83252, -26.359459, 23.436134, -30.025993, 18.679543)
+
+[sub_resource type="TileSet" id="TileSet_mad0u"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_fyhu2")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mad0u"]
+
 [node name="World" type="Node2D" unique_id=1580332255]
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=1585598891]
@@ -1306,6 +1321,12 @@ tile_set = SubResource("TileSet_ai45w")
 [node name="Collectibles" type="TileMapLayer" parent="TileMapLayers" unique_id=2131688815]
 tile_map_data = PackedByteArray("AAAKAAMAAAAAAAAAAQAAAAQAAAAAAAAAAQAAAAEAAAAAAAAAAQAAAAMAAAAAAAAAAgA=")
 tile_set = SubResource("TileSet_fyhu2")
+
+[node name="Buildings" type="TileMapLayer" parent="TileMapLayers" unique_id=743834709]
+z_index = 1
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAQAAIAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_mad0u")
 
 [node name="Player" parent="." unique_id=646627688 instance=ExtResource("1_6xmxd")]
 position = Vector2(45, 40)
@@ -1330,4 +1351,13 @@ end_point_marker = NodePath("Marker2D")
 position = Vector2(57, -3)
 
 [node name="Hud" parent="." unique_id=1191468058 node_paths=PackedStringArray("player") instance=ExtResource("7_sc4t8")]
+visible = false
 player = NodePath("../Player")
+
+[node name="SceneTrigger" parent="." unique_id=417889650 instance=ExtResource("11_ov2xu")]
+position = Vector2(256, 61)
+connect_scene = "house"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTrigger" unique_id=1761653280]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_mad0u")

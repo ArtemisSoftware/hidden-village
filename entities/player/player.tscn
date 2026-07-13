@@ -352,6 +352,8 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=646627688]
+position = Vector2(0, -8)
+collision_layer = 9
 script = ExtResource("1_abrql")
 inventory = ExtResource("2_sglur")
 
