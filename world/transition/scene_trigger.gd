@@ -15,8 +15,6 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	
-	var full_path = scene_folder + connect_scene + ".tscn"
-	var scene_tree = get_tree()
-	scene_tree.call_deferred("change_scene_to_file", full_path)
+	if body is Player:
+		SceneManagerGlobal.change_scene(owner, connect_scene)
 	pass # Replace with function body.

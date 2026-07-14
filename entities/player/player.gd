@@ -8,7 +8,7 @@ class_name Player extends CharacterBody2D
 
 @export var speed: int = 35
 
-@export var max_health: int = 3
+@export var max_health: int = 3 * 4
 @onready var current_health: int = max_health
 
 @export var knock_back_power: int = 500

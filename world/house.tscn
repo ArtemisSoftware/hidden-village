@@ -1,8 +1,11 @@
 [gd_scene format=4 uid="uid://bmerr041sr2gg"]
 
+[ext_resource type="Script" uid="uid://fcec50rdnpfe" path="res://world/base_scene.gd" id="1_2skef"]
 [ext_resource type="Texture2D" uid="uid://cb5hguwtgo4wo" path="res://world/titlesets/sprites/TilesetWallSimple.png" id="1_v4e3w"]
 [ext_resource type="Texture2D" uid="uid://b6itouqgejkrm" path="res://world/titlesets/sprites/TilesetInteriorFloor.png" id="2_2skef"]
 [ext_resource type="Texture2D" uid="uid://cb5t81icmar1j" path="res://world/titlesets/sprites/TilesetElement.png" id="3_27kdi"]
+[ext_resource type="PackedScene" uid="uid://cp383dtjg0x8e" path="res://world/transition/scene_trigger.tscn" id="5_27kdi"]
+[ext_resource type="PackedScene" uid="uid://b666q4h83mjo6" path="res://entities/player/player.tscn" id="6_k7d7q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7d7q"]
 texture = ExtResource("1_v4e3w")
@@ -404,8 +407,28 @@ sources/0 = SubResource("TileSetAtlasSource_k7d7q")
 sources/1 = SubResource("TileSetAtlasSource_7hkr2")
 sources/2 = SubResource("TileSetAtlasSource_rk82d")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgjhj"]
+size = Vector2(16, 5)
+
 [node name="House" type="Node2D" unique_id=691266470]
+script = ExtResource("1_2skef")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1493294645]
 tile_map_data = PackedByteArray("AAABAAEAAAAAAAAAAAABAAIAAAAAAAEAAAABAAMAAAAAAAEAAAABAAQAAAAAAAEAAAABAAUAAAAAAAQAAAACAAUAAAABAAQAAAAEAAUAAAACAAQAAAAFAAUAAAADAAQAAAAGAAUAAAADAAQAAAAHAAUAAAADAAQAAAAIAAUAAAAEAAQAAAAIAAQAAAAEAAEAAAAIAAMAAAAEAAEAAAAIAAIAAAAEAAEAAAAIAAEAAAAEAAAAAAAHAAEAAAADAAAAAAAGAAEAAAADAAAAAAAFAAEAAAADAAAAAAAEAAEAAAADAAAAAAACAAEAAAADAAAAAAADAAEAAAADAAAAAAACAAIAAQABAAEAAAADAAIAAQABAAEAAAAEAAIAAQABAAEAAAAFAAIAAQABAAEAAAAGAAIAAQABAAEAAAAHAAIAAQABAAEAAAAHAAMAAQABAAEAAAAHAAQAAQABAAEAAAAGAAQAAQABAAEAAAAFAAQAAQABAAEAAAAEAAQAAQABAAEAAAADAAQAAQABAAEAAAACAAQAAQABAAEAAAACAAMAAQABAAEAAAADAAMAAQABAAEAAAAEAAMAAQABAAEAAAAFAAMAAQABAAEAAAAGAAMAAQABAAEAAAADAAUAAQABAAEAAAA=")
 tile_set = SubResource("TileSet_by6l3")
+
+[node name="EntranceMarkers" type="Node2D" parent="." unique_id=1256425936]
+
+[node name="Marker2D" type="Marker2D" parent="EntranceMarkers" unique_id=801768180]
+position = Vector2(55, 72)
+
+[node name="SceneTrigger" parent="." unique_id=417889650 instance=ExtResource("5_27kdi")]
+position = Vector2(44, 74)
+connect_scene = "world"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTrigger" unique_id=2000727424]
+position = Vector2(12, 11)
+shape = SubResource("RectangleShape2D_hgjhj")
+debug_color = Color(0.9569629, 0, 0.5377246, 0.41960785)
+
+[node name="Player" parent="." unique_id=646627688 instance=ExtResource("6_k7d7q")]
